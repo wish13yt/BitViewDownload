@@ -1,3 +1,24 @@
-<h1>BitviewDownload</h1>
-<p>You are responsible for what you download. This website is a WIP.</p>
-<p>Questions? Email bvdown@wishdog.link!</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BitviewDownload</title>
+    <script type="text/javascript">
+        function saveInput() {
+            var userInput = document.getElementById("userInput").value;
+            var url = "https://www.bitview.net/videos/" + userInput + ".mp4";
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h1>BitviewDownload</h1>
+    <p>You are responsible for what you download. This website is a WIP.</p>
+    <p>Questions? Email bvdown@wishdog.link!</p>
+
+    <form onsubmit="saveInput(); return false;">
+        <label for="userInput">Enter the mp4 name if you know it:</label>
+        <input type="text" id="userInput" name="userInput">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
