@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-     <link rel="icon" type="image/x-icon" href="bitviewdownloader.jpg">
+    <link rel="icon" type="image/x-icon" href="bitviewdownloader.jpg">
     <title>BitviewDownload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        #downloadLink {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
     <script type="text/javascript">
         function saveInput() {
-            var userInput = document.getElementById("userInput").value;
-            var url = "https://www.bitview.net/videos/" + userInput + ".mp4";
-            window.location.href = url;
+            var userInput = document.getElementById("userInput").value.trim();
+            if (userInput) {
+                var url = "https://www.bitview.net/videos/" + encodeURIComponent(userInput) + ".mp4";
+                var downloadLink = document.getElementById("downloadLink");
+                downloadLink.href = url;
+                downloadLink.style.display = "inline-block";
+            } else {
+                alert("Please enter the MP4 name.");
+            }
         }
     </script>
 </head>
@@ -17,16 +51,19 @@
     <p>Questions? Email bvdown@wishdog.link!</p>
 
     <form onsubmit="saveInput(); return false;">
-        <label for="userInput">Enter the mp4 name if you know it:</label>
+        <label for="userInput">Enter the MP4 name if you know it:</label>
         <input type="text" id="userInput" name="userInput">
         <button type="submit">Submit</button>
     </form>
-            <h1>FAQ</h1>
-        <h2>How do I use this?</h2>
-        <p>You need to know the MP4 name. Once you know that, enter it in the box, then click the three dots. Then click Download, and that's all!</p>
-        <h2>How do I find the MP4 name?</h2>
-        <p>Follow this guide, published by me, Wish! https://www.bitview.net/watch?v=JB33wycO</p>
-        <h2>Is the MP4 name the video URL? (example: kLyPN5ZnoTv)</h2>
-        <p>No. It is the name of the MP4 that was uploaded to Bitview.</p>
+
+    <a id="downloadLink" download="video.mp4">Download Video</a>
+
+    <h1>FAQ</h1>
+    <h2>How do I use this?</h2>
+    <p>You need to know the MP4 name. Once you know that, enter it in the box, then click the three dots. Then click Download, and that's all!</p>
+    <h2>How do I find the MP4 name?</h2>
+    <p>Follow this guide, published by me, Wish! <a href="https://www.bitview.net/watch?v=JB33wycO" target="_blank">https://www.bitview.net/watch?v=JB33wycO</a></p>
+    <h2>Is the MP4 name the video URL? (example: kLyPN5ZnoTv)</h2>
+    <p>No. It is the name of the MP4 that was uploaded to Bitview.</p>
 </body>
 </html>
