@@ -22,23 +22,18 @@
             padding: 10px;
             margin: 5px;
         }
-        #downloadLink {
-            display: none;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-        }
     </style>
     <script type="text/javascript">
         function saveInput() {
             var userInput = document.getElementById("userInput").value.trim();
             if (userInput) {
                 var url = "https://www.bitview.net/videos/" + encodeURIComponent(userInput) + ".mp4";
-                var downloadLink = document.getElementById("downloadLink");
-                downloadLink.href = url;
-                downloadLink.style.display = "inline-block";
+                var link = document.createElement("a");
+                link.href = url;
+                link.download = "video.mp4";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             } else {
                 alert("Please enter the MP4 name.");
             }
@@ -55,8 +50,6 @@
         <input type="text" id="userInput" name="userInput">
         <button type="submit">Submit</button>
     </form>
-
-    <a id="downloadLink" download="video.mp4">Download Video</a>
 
     <h1>FAQ</h1>
     <h2>How do I use this?</h2>
