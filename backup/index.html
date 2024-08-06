@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="icon" type="image/x-icon" href="bitviewdownloader.jpg">
+    <title>BitviewDownload</title>
+    <script type="text/javascript">
+        function saveInput() {
+            var userInput = document.getElementById("userInput").value;
+            var url = "https://www.bitview.net/videos/" + userInput + ".mp4";
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h1>BitviewDownload</h1>
+    <p>You are responsible for what you download. This website is a WIP.</p>
+    <p>Questions? Email bvdown@wishdog.link!</p>
+
+    <form onsubmit="saveInput(); return false;">
+        <label for="userInput">Enter the mp4 name if you know it:</label>
+        <input type="text" id="userInput" name="userInput">
+        <button type="submit">Submit</button>
+    </form>
+            <h1>FAQ</h1>
+        <h2>How do I use this?</h2>
+        <p>You need to know the MP4 name. Once you know that, enter it in the box, then click the three dots. Then click Download, and that's all!</p>
+        <h2>How do I find the MP4 name?</h2>
+        <p>Follow this guide, published by me, Wish! https://www.bitview.net/watch?v=JB33wycO</p>
+        <h2>Is the MP4 name the video URL? (example: kLyPN5ZnoTv)</h2>
+        <p>No. It is the name of the MP4 that was uploaded to Bitview.</p>
+</body>
+</html>
