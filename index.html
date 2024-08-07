@@ -22,63 +22,21 @@
             padding: 10px;
             margin: 5px;
         }
-        #videoInfo {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-        }
-        #downloadLink {
-            display: none;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-        }
     </style>
-    <script type="text/javascript" src="apiKey.js"></script>
     <script type="text/javascript">
-        async function fetchVideoInfo() {
-            const userInput = document.getElementById("userInput").value.trim();
+        function saveInput() {
+            var userInput = document.getElementById("userInput").value.trim();
             if (userInput) {
-                const apiKey = window.API_KEY;
-                const apiUrl = `https://www.bitview.net/api.php?ty=video&ta=${encodeURIComponent(userInput)}&api_key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl);
-                    const data = await response.json();
-
-                    if (data.r === 'success') {
-                        displayVideoInfo(data);
-                    } else {
-                        alert('Error fetching video information: ' + data);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                }
+                var url = "https://www.bitview.net/videos/" + encodeURIComponent(userInput) + ".mp4";
+                var link = document.createElement("a");
+                link.href = url;
+                link.download = "video.mp4";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             } else {
                 alert("Please enter the MP4 name.");
             }
-        }
-
-        function displayVideoInfo(data) {
-            const videoInfo = document.getElementById("videoInfo");
-            videoInfo.innerHTML = `
-                <h2>${data.title}</h2>
-                <p><strong>Description:</strong> ${data.description}</p>
-                <p><strong>Category:</strong> ${data.category}</p>
-                <p><strong>Tags:</strong> ${data.tags}</p>
-                <p><strong>Uploaded By:</strong> ${data.upload_by}</p>
-                <p><strong>Upload Date:</strong> ${data.upload_date}</p>
-                <p><strong>Duration:</strong> ${data.duration}</p>
-                <p><strong>Views:</strong> ${data.display_views}</p>
-                <p><strong>Comments:</strong> ${data.comment_num}</p>
-                <p><strong>Featured:</strong> ${data.is_featured ? 'Yes' : 'No'}</p>
-            `;
-            const downloadLink = document.getElementById("downloadLink");
-            downloadLink.href = data.url;
-            downloadLink.style.display = "inline-block";
         }
     </script>
 </head>
@@ -87,14 +45,11 @@
     <p>You are responsible for what you download. This website is a WIP.</p>
     <p>Questions? Email bvdown@wishdog.link!</p>
 
-    <form onsubmit="fetchVideoInfo(); return false;">
+    <form onsubmit="saveInput(); return false;">
         <label for="userInput">Enter the MP4 name if you know it:</label>
         <input type="text" id="userInput" name="userInput">
         <button type="submit">Submit</button>
     </form>
-
-    <div id="videoInfo"></div>
-    <a id="downloadLink" download="video.mp4">Download Video</a>
 
     <h1>FAQ</h1>
     <h2>How do I use this?</h2>
